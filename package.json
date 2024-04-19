@@ -1,8 +1,8 @@
 {
   "name": "wl-composable-module",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "Whitelabel Composable module nuxt",
-  "repository": "your-org/my-module",
+  "repository": "https://github.com/arimaulana07/wl-api-collections-module",
   "license": "MIT",
   "type": "module",
   "exports": {
