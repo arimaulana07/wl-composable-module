@@ -2,10 +2,7 @@
 import 'primevue/resources/themes/lara-light-green/theme.css'
 import FormReservation from './components/ThemeA/FormReservation/FormReservation.vue';
 
-const { getDeparture, getDestination } = useApiData()
-
-const fetchDepartures = await getDeparture()
-const fetchDestinations = await getDestination({ outletasal: '1' })
+const { getDeparture, getDestination } = useApiData();
 
 const {
   departures,
@@ -14,7 +11,7 @@ const {
   setSelectedDestination,
   selectedDeparture,
   selectedDestination
-} = useFormReservation({ fetchDepartures, fetchDestinations })
+} = useFormReservation({ fetchDepartures: getDeparture, fetchDestinations: getDestination });
 
 const selectedDate = ref<Date>(new Date())
 
@@ -37,6 +34,7 @@ const setSelectedDate = (date: Date) => {
     </div>
   </div>
   <FormReservation
+    v-if="destinations && destinations.outlet"
     :departures="departures"
     :destinations="destinations"
     :selected-departure="selectedDeparture"
