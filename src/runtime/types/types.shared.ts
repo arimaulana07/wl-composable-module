@@ -42,5 +42,3 @@ export interface Destinations {
   outlet: OutletDestination[] | null;
   kota: City[] | null;
 }
-
-

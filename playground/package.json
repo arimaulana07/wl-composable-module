@@ -12,7 +12,7 @@
     "@vuepic/vue-datepicker": "^7.4.1",
     "pinia": "^2.1.7",
     "primevue": "^3.46.0",
-    "wl-api-collections-module": "^1.0.12"
+    "wl-api-collections-module": "^1.0.21"
   },
   "devDependencies": {
     "@nuxtjs/tailwindcss": "^6.10.3",

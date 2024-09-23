@@ -67,5 +67,12 @@ export const useFormReservation = ({ fetchDepartures, fetchDestinations }: any) 
   })
   
 
-  return { setSelectedDeparture, setSelectedDestination, departures, destinations, selectedDeparture, selectedDestination }
+  return {
+    setSelectedDeparture,
+    setSelectedDestination,
+    departures,
+    destinations,
+    selectedDeparture,
+    selectedDestination
+  }
 }

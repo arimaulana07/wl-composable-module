@@ -1,4 +1,4 @@
-import { defineNuxtModule, addPlugin, createResolver, addImports } from '@nuxt/kit'
+import { defineNuxtModule, addPlugin, createResolver, addImports, addImportsDir } from '@nuxt/kit'
 
 // Module options TypeScript interface definition
 export interface ModuleOptions {}
@@ -15,7 +15,7 @@ export default defineNuxtModule<ModuleOptions>({
 
     // Do not add the extension since the `.ts` will be transpiled to `.mjs` after `npm run prepack`
     addPlugin(resolver.resolve('./runtime/plugin'));
-
+    
     addImports([
       {
         name: 'useCommons',
