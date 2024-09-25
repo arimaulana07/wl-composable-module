@@ -175,5 +175,6 @@ export default defineNuxtModule<ModuleOptions>({
     addImportsDir(resolver.resolve('runtime/types'));
     
     await installModule('@pinia/nuxt');
+    await installModule('@vueuse/nuxt');
   }
 })
