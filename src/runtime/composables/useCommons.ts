@@ -1,10 +1,10 @@
 import { ref } from "#imports";
-import type { ApiCallPayload, ApiResponseWrapper } from "./types/useCommons.type";
+import type { ApiCallPayload, ApiResponseWrapper } from "./types/UseCommons";
 import { endpoint } from "../apiCollections";
 import { useRuntimeConfig, useFetch } from "#imports";
 
 const token = ref(null);
-const fetchToken = async () => {
+export const fetchToken = async () => {
   const { public: publicConfig } = useRuntimeConfig()
   const { url, method } = endpoint.requestToken
   

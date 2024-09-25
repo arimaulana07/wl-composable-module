@@ -1,78 +1,70 @@
-import { useApiData } from "../useApiData"
-import { ref, onMounted } from 'vue'
-import { useSetOutlets } from "./useSetOutlets"
-import { useSelectDeparture } from "./useSelectDeparture"
-import { useSelectOutlet } from "./useSelectOutlet"
+import { storeToRefs } from 'pinia'
+import { useStore } from '../../store/store';
+import { useSelectOutlet } from "./useSelectOutlet";
+import { nanoid } from 'nanoid';
+import { useStorage } from '@vueuse/core';
+import { useSetOutlets } from './useSetOutlets';
+import { useApiData } from '../useApiData';
+import { dateToYMD } from '../../utils';
 
-import type { Departures, Destinations } from "../../types/types.shared"
+export const useFormReservation = ({ modalDeparture, modalDestination, router }: any)  => {
+  const store = useStore();
+  const { selectedDeparture, selectedDestination, destinations } = storeToRefs(useStore());
+  const { getDestination, getSchedule } = useApiData();
 
-export const useFormReservation = ({ fetchDepartures, fetchDestinations }: any) => {
-  const { getDeparture, getDestination } = useApiData()
 
-  const departures = ref<Departures>({ kota: null, outlet: null })
-  const destinations = ref<Destinations>({ kota: null, outlet: null })
-  const selectedDeparture = ref<string>('')
-  const selectedDestination = ref<string>('')
-
-  
-
-  // useSetOutlets({ 
-  //   outlets: departures,
-  //   newOutlets: {
-  //     outlet: fetchDepartures?.outlet,
-  //     kota: fetchDepartures?.kota
-  //   }
-  // })
-
-  // useSetOutlets({ 
-  //   outlets: destinations,
-  //   newOutlets: {
-  //     outlet: fetchDestinations?.outlet,
-  //     kota: fetchDestinations?.kota
-  //   }
-  // })
-
-  const setSelectedDeparture = (id: string) => {
-    useSelectDeparture({
-      currentSelectedDepartureOutlet: selectedDeparture,
-      newSelectedDepartureOutlet: id,
-      destinationOutlets: destinations,
-      currentSelectedDestinationOutlet: selectedDestination
-    })
-  }
-
-  const setSelectedDestination = (id: string) => {
-    useSelectOutlet({ currentSelectedOutlet: selectedDestination, newSelectedOutlet: id })
-  }
-
-  onMounted(async () => {
-    const resultDepartures = await fetchDepartures();
-    useSetOutlets({ 
-      outlets: departures,
-      newOutlets: {
-        outlet: resultDepartures?.outlet,
-        kota: resultDepartures?.kota
-      }
+  const setSelectedDeparture = async ({ label, value, showModal }: any) => {
+    
+    console.log({ value, label, showModal });
+    modalDeparture.value = false
+    /* Set Departure Outlet */
+    useSelectOutlet({
+      currentSelectedOutlet: selectedDeparture,
+      newSelectedOutlet: { editableLabel: label, value, label }
     });
 
-    const resultDestinations = await fetchDestinations();
-    useSetOutlets({ 
-      outlets: destinations,
-      newOutlets: {
-        outlet: resultDestinations?.outlet,
-        kota: resultDestinations?.kota
-      }
+
+    /* Set Destination Outlet */
+    const fetchDestination = await getDestination({ outletasal: selectedDeparture?.value.value }); 
+    useSetOutlets({
+      outlets: destinations, 
+      newOutlets: fetchDestination
     });
 
-  })
-  
+    useSelectOutlet({
+      currentSelectedOutlet: selectedDestination,
+      newSelectedOutlet: { editableLabel: null, label: null, value: null }
+    });
+  }
+
+  const setSelectedDestination = ({ label, value }: any) => {
+    modalDestination.value = false;
+    useSelectOutlet({
+      currentSelectedOutlet: selectedDestination,
+      newSelectedOutlet: { editableLabel: label, value, label }
+    });
+  }
+
+  /* Find Schedule Handler */
+  const findSchedule = async () => {
+    const sessionId = nanoid(16);
+    const storedData = useStorage<any>(sessionId, null);
+    const fetchSchedule = await getSchedule({
+      outletasal: store.selectedDeparture?.value as string,
+      outlettujuan: store.selectedDestination?.value as string,
+      tglberangkat: dateToYMD(store.selectedDate)
+    });
+    console.log('fetchSchedule', fetchSchedule);
+    store.schedules = fetchSchedule;
+    store.sessionId = sessionId;
+    store.sessionTimeStamp = new Date().getTime();
+    storedData.value = JSON.stringify(store.$state);
+    router.push({ name: 'reservation-schedule', query: { session_id: sessionId } });
+  }
 
   return {
     setSelectedDeparture,
     setSelectedDestination,
-    departures,
-    destinations,
-    selectedDeparture,
-    selectedDestination
+    findSchedule
   }
 }

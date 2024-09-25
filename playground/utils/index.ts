@@ -1,4 +1,4 @@
-import type { OutletDeparture, OutletDestination } from '../interface'
+import type { OutletDeparture } from '../interface'
 
 interface GroupedOutlets {
   kota: string | null;

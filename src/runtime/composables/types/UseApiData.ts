@@ -22,6 +22,8 @@ export interface GetCalculatePriceParams {
   idproduk: string | number;
   idoutletpickup: string | number;
   idoutletdropoff: string | number;
+  nomorkursi: string;
+  paymentchannel: string;
 }
 
 export interface GetBookingParams {
@@ -41,6 +43,7 @@ export interface GetBookingParams {
   payment: string;
   adminfee: string | number;
   saleschannel: string;
+  isasuransi: number;
 }
 
 export interface BookingDetailParams {

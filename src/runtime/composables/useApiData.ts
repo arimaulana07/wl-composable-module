@@ -1,7 +1,7 @@
 import { useWlFetch } from "./useCommons";
-import type { requestTokenBody, GetScheduleParams, GetSeatsParams, GetCalculatePriceParams, GetBookingParams, BookingDetailParams } from "./types/useApiData.type";
+import type { requestTokenBody, GetScheduleParams, GetSeatsParams, GetCalculatePriceParams, GetBookingParams, BookingDetailParams } from "./types/UseApiData";
 import type { Departures, Destinations, } from "../types/types.shared";
-import type { Schedule } from "../types/Schedule";
+import type { Schedule } from "../types/schedule";
 import type { Seats } from "../types/seats";
 import type { ListPayment } from "../types/listPayment";
 import type { CalculatePrice } from "../types/calculatePrice";
