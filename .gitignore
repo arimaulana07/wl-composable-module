@@ -9,6 +9,7 @@ node_modules
 .tmp
 .cache
 
+
 # Yarn
 **/.yarn/cache
 **/.yarn/*state*
@@ -56,3 +57,5 @@ Temporary Items
 .apdisk
 
 src/runtime/composablesxx
+
+.npmrc

@@ -1,5 +1,5 @@
 {
-  "name": "wl-composable-module",
+  "name": "@said/wl-composable-module",
   "version": "1.0.20",
   "description": "Whitelabel Composable module nuxt",
   "repository": "https://github.com/arimaulana07/wl-composable-module",
@@ -17,6 +17,9 @@
   "files": [
     "dist"
   ],
+  "publishConfig": {
+    "registry": "https://git.tbk.co.id/api/v4/projects/759/packages/npm/"
+  },
   "scripts": {
     "prepack": "nuxt-module-build build",
     "dev": "nuxi dev playground",
