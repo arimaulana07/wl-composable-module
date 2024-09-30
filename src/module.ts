@@ -21,9 +21,6 @@ const typeFormReservationImports: AddImportsProperty = {
     'UseSetOutlets',
     'SelectedDepartureParams',
     'SelectedOutlet',
-    'Form',
-    'FormsCustomer',
-    'FormsPassenger',
   ]
 };
 
@@ -88,6 +85,26 @@ const utilsImports: AddImportsProperty = {
   ],
 };
 
+const typeUsePageFillForm: AddImportsProperty = {
+  path: 'runtime/composables/types/UsePageFillForm',
+  type: true,
+  names: [
+    'Form',
+    'FormsCustomer',
+    'FormsPassenger'
+  ]
+};
+
+const typeUsePageSchedule: AddImportsProperty = {
+  path: 'runtime/composables/types/UsePageSchedule',
+  type: true,
+  names: [
+    'Emits',
+    'Props',
+    'UsePageSchedule'
+  ]
+};
+
 
 export default defineNuxtModule<ModuleOptions>({
   meta: {
@@ -128,6 +145,30 @@ export default defineNuxtModule<ModuleOptions>({
         name: 'useStoredReservationData',
         from: resolver.resolve('runtime/composables/useStoredReservationData')
       },
+      {
+        name: 'usePageFillForm',
+        from: resolver.resolve('runtime/composables/usePageFillForm')
+      },
+      {
+        name: 'usePagePayment',
+        from: resolver.resolve('runtime/composables/usePagePayment')
+      },
+      {
+        name: 'usePageSelectSeats',
+        from: resolver.resolve('runtime/composables/usePageSelectSeats')
+      },
+      {
+        name: 'usePageSuccess',
+        from: resolver.resolve('runtime/composables/usePageSuccess')
+      },
+      {
+        name: 'useSpinner',
+        from: resolver.resolve('runtime/composables/useSpinner')
+      },
+      {
+        name: 'useRemoveExpiredSession',
+        from: resolver.resolve('runtime/composables/useRemoveExpiredSession')
+      },
 
       /* Type Use Commons */
       {
@@ -153,6 +194,16 @@ export default defineNuxtModule<ModuleOptions>({
       {
         name: 'useFormReservation',
         from: resolver.resolve('runtime/composables/FormReservation/useFormReservation')
+      },
+
+      /* Schedule */
+      {
+        name: 'usePageSchedule',
+        from: resolver.resolve('runtime/composables/schedule/usePageSchedule')
+      },
+      {
+        name: 'useScheduleCard',
+        from: resolver.resolve('runtime/composables/schedule/useScheduleCard')
       },
 
       /* Pinia Store */
@@ -194,6 +245,22 @@ export default defineNuxtModule<ModuleOptions>({
         from: resolver.resolve(typeUseApiData.path),
         name,
         type: typeUseApiData.type
+      })
+    });
+    
+    typeUsePageFillForm.names.forEach(name => {
+      addImports({
+        from: resolver.resolve(typeUsePageFillForm.path),
+        name,
+        type: typeUsePageFillForm.type
+      })
+    });
+
+    typeUsePageSchedule.names.forEach(name => {
+      addImports({
+        from: resolver.resolve(typeUsePageSchedule.path),
+        name,
+        type: typeUsePageSchedule.type
       })
     });
 
