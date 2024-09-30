@@ -1,6 +1,6 @@
 {
   "name": "@said/wl-composable-module",
-  "version": "1.0.21",
+  "version": "1.0.22-alpha.0",
   "description": "Whitelabel Composable module nuxt",
   "repository": "https://github.com/arimaulana07/wl-composable-module",
   "license": "MIT",
