@@ -1,5 +1,5 @@
 import type { UseSetOutlets } from "./type";
-import type { Departures, Destinations } from "./type";
+import type { Departures, Destinations } from "../types/UseApiData";
 
 export const useSetOutlets: UseSetOutlets<Departures | Destinations> = ({ outlets, newOutlets }) => {
   if (outlets) {
