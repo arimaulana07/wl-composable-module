@@ -13,11 +13,13 @@ interface UsePagePayment {
   router: Router;
 }
 
+interface SelectedPayment {
+  code: string;
+  admin_fee: number;
+}
+
 export const usePagePayment = ({ router }: UsePagePayment) => {
-  interface SelectedPayment {
-    code: string;
-    admin_fee: number;
-  }
+  
 
   /* Store */
   const store = useStore();
