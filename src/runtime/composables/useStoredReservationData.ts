@@ -25,7 +25,6 @@ export const useStoredReservationData = ({ sessionId }: UseStoredDataParams) => 
     const currentTimeStamp = new Date().getTime();
     
     const diffInMinutes = (currentTimeStamp - sessionTimeStamp) / (1000 * 60);
-    console.log('diffInMinutes', diffInMinutes);
     return diffInMinutes > 15;
   }
 

@@ -1,5 +1,5 @@
 import { ref, computed, watch } from "#imports";
-import { groupBy, searchData } from "../utils/index";
+import { groupBy, searchData } from "../../utils/index";
 
 interface SearchOutletParams {
   selectedOutlet: any;

@@ -52,7 +52,7 @@ export const useFormReservation = ({ modalDeparture, modalDestination, router }:
     const fetchSchedule = await getSchedule({
       outletasal: store.selectedDeparture?.value as string,
       outlettujuan: store.selectedDestination?.value as string,
-      tglberangkat: dateToYMD(store.selectedDate)
+      tglberangkat: dateToYMD(store.selectedDate) as string
     });
     console.log('fetchSchedule', fetchSchedule);
     store.schedules = fetchSchedule;

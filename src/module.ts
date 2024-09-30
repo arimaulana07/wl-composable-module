@@ -1,4 +1,4 @@
-import { defineNuxtModule, addPlugin, createResolver, addImports, addImportsDir, installModule } from '@nuxt/kit';
+import { defineNuxtModule, addPlugin, createResolver, addImports, installModule } from '@nuxt/kit';
 
 // Module options TypeScript interface definition
 export interface ModuleOptions {}
@@ -29,7 +29,6 @@ const typeFormReservationImports: AddImportsProperty = {
     'Form',
     'FormsCustomer',
     'FormsPassenger',
-
   ]
 };
 
@@ -42,9 +41,42 @@ const typeUseApiData: AddImportsProperty = {
     'GetSeatsParams',
     'GetCalculatePriceParams',
     'GetBookingParams',
-    'BookingDetailParams'
+    'BookingDetailParams',
+    'OutletDeparture',
+    'City',
+    'Departures',
+    'OutletDestination',
+    'Destinations',
+    'Booking',
+    'CalculatePrice',
+    'ListKursi',
+    'ListHarga',
+    'DetailBooking',
+    'PaymentData',
+    'DetailTiket',
+    'ListTransit',
+    'Penumpang',
+    'PaymentData2',
+    'ListPayment',
+    'Schedule',
+    'Promo',
+    'ListTransit',
+    'ListTransitConnecting',
+    'Seats',
+    'Petalayout',
+    'PetaLayoutItem',
   ],
-}
+};
+
+const typeUtilsImports: AddImportsProperty = {
+  names: [
+    'GroupedOutlets',
+    'FilterDataParams',
+    'SearchDataParams'
+  ],
+  path: 'runtime/utils/type/Index',
+  type: true
+};
 
 const utilsImports: AddImportsProperty = {
   path: 'runtime/utils/index',
@@ -94,16 +126,8 @@ export default defineNuxtModule<ModuleOptions>({
         from: resolver.resolve('runtime/composables/useModal')
       },
       {
-        name: 'useSchedule',
-        from: resolver.resolve('runtime/composables/useSchedule')
-      },
-      {
         name: 'useSearchOutlet',
-        from: resolver.resolve('runtime/composables/useSearchOutlet')
-      },
-      {
-        name: 'useSelectedOutlet',
-        from: resolver.resolve('runtime/composables/useSelectedOutlet')
+        from: resolver.resolve('runtime/composables/FormReservation/useSearchOutlet')
       },
       {
         name: 'useStoredReservationData',
@@ -154,6 +178,14 @@ export default defineNuxtModule<ModuleOptions>({
       })
     });
 
+    typeUtilsImports.names.forEach(name => {
+      addImports({
+        from: resolver.resolve(typeUtilsImports.path),
+        name,
+        type: typeUtilsImports.type
+      })
+    });
+
     utilsImports.names.forEach(name => {
       addImports({
         from: resolver.resolve(utilsImports.path),
@@ -170,10 +202,6 @@ export default defineNuxtModule<ModuleOptions>({
       })
     });
 
-
-
-    addImportsDir(resolver.resolve('runtime/types'));
-    
     await installModule('@pinia/nuxt');
     await installModule('@vueuse/nuxt');
   }

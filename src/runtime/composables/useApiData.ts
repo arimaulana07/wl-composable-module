@@ -1,12 +1,24 @@
 import { useWlFetch } from "./useCommons";
-import type { requestTokenBody, GetScheduleParams, GetSeatsParams, GetCalculatePriceParams, GetBookingParams, BookingDetailParams } from "./types/UseApiData";
-import type { Departures, Destinations, } from "../types/types.shared";
-import type { Schedule } from "../types/schedule";
-import type { Seats } from "../types/seats";
-import type { ListPayment } from "../types/listPayment";
-import type { CalculatePrice } from "../types/calculatePrice";
-import type { Booking } from "../types/booking";
-import type { DetailBooking } from "../types/detailBooking";
+import type {
+  requestTokenBody,
+  GetScheduleParams,
+  GetSeatsParams,
+  GetCalculatePriceParams,
+  GetBookingParams,
+  BookingDetailParams
+} from "./types/UseApiData";
+
+import type { 
+  Booking,
+  Departures,
+  Destinations,
+  Schedule,
+  Seats,
+  ListPayment,
+  CalculatePrice,
+  DetailBooking
+ } from "./types/UseApiData";
+
 
 export const useApiData = () => {
   const requestToken = async (body: requestTokenBody) => {

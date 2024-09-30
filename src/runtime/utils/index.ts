@@ -1,41 +1,8 @@
 import fuse from "../services/fuse";
 import { useDateFormat } from '@vueuse/core';
 
-/* Outlets Departure */
-export interface OutletDeparture {
-  id: string;
-  group: string;
-  kode: string;
-  nama: string;
-  telpon: string;
-  alamat: string;
-  latitude: string;
-  longitude: string;
-  kode_kota: string;
-  kota: string;
-  flag_agen: string | number;
-  flag_aktif: string | number;
-  img: string;
-  url_map?: string;
-  list_img: Array<string>;
-}
-
-export interface GroupedOutlets {
-  kota: string | null;
-  items: OutletDeparture[] | null;
-}
-
-export interface FilterDataParams {
-  datas: any;
-  by?: any;
-  keyword: any;
-}
-
-export interface SearchDataParams {
-  list: any;
-  keyword: string;
-  keys: string[]
-}
+import type { GroupedOutlets, FilterDataParams, SearchDataParams } from "./type/Index";
+import type { OutletDeparture } from "../composables/types/UseApiData";
 
 export const groupBy = (data: OutletDeparture[]) => {
   if (!data || data.length === 0) return [];
