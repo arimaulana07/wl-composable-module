@@ -117,8 +117,12 @@ export default defineNuxtModule<ModuleOptions>({
     const resolver = createResolver(import.meta.url)
 
     // Do not add the extension since the `.ts` will be transpiled to `.mjs` after `npm run prepack`
-    addPlugin(resolver.resolve('./runtime/plugin'));
+    addPlugin({
+      src: resolver.resolve('./runtime/plugin/vue3-toastify'),
+      mode: 'client'
+    });
 
+    
     /* Single Composable Imports */
     addImports([
       {
@@ -210,8 +214,12 @@ export default defineNuxtModule<ModuleOptions>({
       {
         name: 'useStore',
         from: resolver.resolve('runtime/store/store'),
-        
       },
+
+      {
+        name: 'useToast',
+        from: resolver.resolve('runtime/composables/useToast'),
+      }
 
     ]);
 

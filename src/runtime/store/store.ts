@@ -1,6 +1,7 @@
 import { defineStore } from 'pinia';
-import type { Departures, Destinations, SelectedOutlet } from "../composables/FormReservation/type";
+import type {  SelectedOutlet } from "../composables/FormReservation/type";
 import type { FormsCustomer, FormsPassenger } from '../composables/types/UsePageFillForm';
+import type { Departures, Destinations } from '../composables/types/UseApiData';
 
 export const useStore = defineStore('store', {
   state: () => {

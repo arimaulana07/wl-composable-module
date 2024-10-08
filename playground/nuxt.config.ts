@@ -1,5 +1,5 @@
 export default defineNuxtConfig({
-  modules: ['wl-api-collections-module', '../src/module', '@nuxtjs/tailwindcss', 'nuxt-primevue'],
+  modules: ['wl-api-collections-module', '../src/module', '@nuxtjs/tailwindcss'],
   runtimeConfig: {
     baseApiUrl: '',
     trailingApiUrl: '',
