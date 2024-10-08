@@ -4,7 +4,8 @@ import { group } from '../utils';
 import { useStoredReservationData } from './useStoredReservationData';
 import { useSpinner } from "./useSpinner";
 import { useApiData } from './useApiData';
-import { useExpandElement } from './useExpandElement'
+import { useExpandElement } from './useExpandElement';
+import { useToast } from "./useToast";
 
 import type { Router } from "vue-router";
 import type { FormsCustomer } from "./types/UsePageFillForm";
@@ -26,6 +27,9 @@ export const usePagePayment = ({ router }: UsePagePayment) => {
   
   /* API Fetch Composable */
   const { booking, detailBooking, calculatePrice } = useApiData();
+  
+  /* Toast */
+  const { toast } = useToast();
 
   /* Spinner */
   const { showSpinner } = useSpinner();
@@ -58,6 +62,7 @@ export const usePagePayment = ({ router }: UsePagePayment) => {
   const listPayment = ref<any>([]);
   const { getListPayment } = useApiData();
   const bookingHandler = async () => {
+    if (selectedPayment.value === null) return (toast as any).warn('Harap pilih metode pembayaran terlebih dahulu');
     const {
       id_outlet_dropoff: idoutletdropoff,
       id_outlet_pickup: idoutletpickup,

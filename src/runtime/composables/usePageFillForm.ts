@@ -136,6 +136,15 @@ export const usePageFillForm = ({ router }: Params) => {
     showSpinner.value = false;
   });
 
-  return  { formsCustomer, formsPassenger, showSpinner, isFormFullFilled, toSelectSeats, triggerValidation }
+  return  {
+    formsCustomer,
+    formsPassenger,
+    showSpinner,
+    isFormFullFilled,
+    toSelectSeats,
+    triggerValidation,
+    customerFormValidation,
+    passengerFormValidation
+  }
 
 };

@@ -215,10 +215,13 @@ export default defineNuxtModule<ModuleOptions>({
         name: 'useStore',
         from: resolver.resolve('runtime/store/store'),
       },
-
       {
         name: 'useToast',
         from: resolver.resolve('runtime/composables/useToast'),
+      },
+      {
+        name: 'useFormValidation',
+        from: resolver.resolve('runtime/composables/useFormValidation'),
       }
 
     ]);
