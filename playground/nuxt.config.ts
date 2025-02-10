@@ -9,7 +9,8 @@ export default defineNuxtConfig({
     public: {
       clientId: process.env.NUXT_CLIENT_ID,
       clientSecret: process.env.NUXT_CLIENT_SECRET,
-      grantType: process.env.NUXT_GRANT_TYPE
+      grantType: process.env.NUXT_GRANT_TYPE,
+      appUrl: process.env.NUXT_APP_URL
     }
   },
   build: {

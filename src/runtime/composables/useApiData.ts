@@ -26,9 +26,10 @@ export const useApiData = () => {
   }
   const getDeparture = async () => {
     const response = await useWlFetch<Departures>({ action: 'departure' });
+    
     return response.tiketux.result;
   }
-  
+ 
   const getDestination = async (params: { outletasal: string }) => {
     const response = await useWlFetch<Destinations>({ action: 'destination', params });
     return response.tiketux.result;

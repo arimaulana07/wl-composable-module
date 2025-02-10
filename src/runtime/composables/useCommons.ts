@@ -8,7 +8,7 @@ export const fetchToken = async () => {
   const { public: publicConfig } = useRuntimeConfig()
   const { url, method } = endpoint.requestToken
   
-  const response = await useFetch(url, { 
+  const response = await useFetch(publicConfig.appUrl + url, { 
     method,
     body: {
       grant_type: publicConfig.grantType,
@@ -24,12 +24,12 @@ export const fetchToken = async () => {
 export const useWlFetch =
   async <T>({ action, body = null , params = null }: ApiCallPayload, loop = 0): Promise<ApiResponseWrapper<T>> => {
     if (loop > 3) throw new Error('Looping Detected!');
-
     console.log('token ' + action, token.value)
-
+    const { public: publicConfig } = useRuntimeConfig()
+    console.log('web url', process.env.NUXT_APP_URL)
     const { url, method } = endpoint[action];
     try {
-      const data = await $fetch<ApiResponseWrapper<T>>(url, {
+      const data = await $fetch<ApiResponseWrapper<T>>('http://localhost:3000' + url, {
         method,
         body,
         params: params as object,

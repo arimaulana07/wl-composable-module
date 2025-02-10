@@ -277,5 +277,6 @@ export default defineNuxtModule<ModuleOptions>({
 
     await installModule('@pinia/nuxt');
     await installModule('@vueuse/nuxt');
+    await installModule('@nuxt/test-utils/module');
   }
 })
